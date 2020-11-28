@@ -1,0 +1,5 @@
+.idea
+env
+*.pyc
+cat_app/cat_app/__pycache__
+cat_app/__pycache__

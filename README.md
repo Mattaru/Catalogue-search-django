@@ -1,1 +1,1 @@
-# Catalogue-search-django
+# Auto-catalog-django
