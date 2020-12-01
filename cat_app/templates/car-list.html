@@ -31,66 +31,11 @@
             </div>
             <div class="col-4">
                 <form class="one-row-search" action="{% url 'catalog:car-list' %}">
-                    <input name="search" type="text" placeholder="search...">
+                    {{ one_row_search }}
                     <button type="submit">search</button>
                 </form>
                 <form class="search-form" action="{% url 'catalog:car-list' %}">
-                    <table>
-                        <tr>
-                            <td>
-                                <lable for="prod">Producer:</lable>
-                            </td>
-                            <td>
-                                <input name="producer" type="search" id="prod">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <lable for="mod">Model:</lable>
-                            </td>
-                            <td>
-                                <input name="model" type="search" id="mod">
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                <lable for="release">Release year:</lable>
-                            </td>
-                            <td>
-                                <input name="release_year" type="search" id="release">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <lable for="col">Color:</lable>
-                            </td>
-                            <td>
-                                <input type="search" name="color" id="col">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="for-radio">
-                                <p>Transmission:</p>
-                            </td>
-                            <td>
-                                <ul>
-                                    <li>
-                                        <lable for="transmission">mechanic</lable>
-                                        <input name="transmission" type="checkbox" id="transmission" value="MCH">
-                                    </li>
-                                    <li>
-                                        <lable for="transmission1">automatic</lable>
-                                        <input name="transmission" type="checkbox" id="transmission1" value="AUT">
-                                    </li>
-                                    <li>
-                                        <lable for="transmission2">robotic</lable>
-                                        <input name="transmission" type="checkbox" id="transmission2" value="ROB">
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                    </table>
+                    <table>{{ optional_search }}</table>
                     <button class="form-btn" type="submit">search</button>
                 </form>
             </div>
