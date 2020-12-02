@@ -21,7 +21,6 @@ class CarList(ListView):
         q_set = Car.objects.all()
         params = self.request.GET.dict()
 
-        # search for the homework
         if params.get('search'):
             val = params.get('search')
             q_set = Car.objects.filter(
@@ -32,26 +31,10 @@ class CarList(ListView):
                 | Q(color__icontains=val)
             )
         else:
-            # search for a big form with many filters
-            prod = params.get('producer')
-            mod = params.get('model')
-            year = params.get('release_year')
-            transmission = params.get('transmission')
-            color = params.get('color')
-
-            if prod:
-                q_set = q_set.filter(producer__icontains=prod)
-
-            if mod:
-                q_set = q_set.filter(model__icontains=mod)
-
-            if year:
-                q_set = q_set.filter(release_year__icontains=year)
-
-            if transmission and not transmission == 'All':
-                q_set = q_set.filter(transmission__icontains=transmission)
-
-            if color:
-                q_set = q_set.filter(color__icontains=color)
+            request_filters = Q()
+            for key, value in params.items():
+                if value and not value == 'All':
+                    request_filters &= Q(**{f'{key}__icontains': value})
+            q_set = Car.objects.filter(request_filters)
 
         return q_set
